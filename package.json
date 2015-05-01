@@ -1,8 +1,8 @@
 {
-  "private": true,
-  "devDependencies": {
-    "gulp": "^3.8.8",
-    "laravel-elixir": "*",
-    "FortAwesome/Font-Awesome": "*"
-  }
+    "private": true,
+    "devDependencies": {
+        "gulp": "^3.8.8",
+        "laravel-elixir": "*",
+        "fortawesome/font-awesome": "4.3.0"
+    }
 }
