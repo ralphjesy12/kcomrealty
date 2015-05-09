@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Bootstrap 101 Template</title>
+        <title>Find your way home | For Sale , Lease , Ready for Occupancy | K-Com Realty</title>
         <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
         <link href="{{ elixir('css/styles.css') }}" rel="stylesheet">
 
@@ -20,8 +20,8 @@
         @yield('content')
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{{ asset('/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="{{ asset('/js/script.js') }}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
