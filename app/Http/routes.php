@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('/index2', 'IndexController@index2');
 
 Route::get('home', 'HomeController@index');
 
