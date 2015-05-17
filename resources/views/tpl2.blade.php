@@ -8,9 +8,15 @@
             <title>Find your way home | For Sale , Lease , Ready for Occupancy | K-Com Realty</title>
             <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
             <link href="{{ elixir('css/styles.css') }}" rel="stylesheet">
+
             <link href="{{ asset('/plugins/owl-carousel/assets/owl.carousel.css') }}" rel="stylesheet">
             <link href="{{ asset('/plugins/owl-carousel/assets/owl.theme.green.css') }}" rel="stylesheet">
-        @yield('styles')
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
         </head>
         <body>
         <nav id="header" class="navbar navbar-default navbar-fixed-top">
@@ -30,8 +36,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
 
-                        <li class="active"><a href="/"><i class="fa fa-home"></i> HOME</a></li>
-                        <li class="dropdown">
+                        <li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
+                        <li class="active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-paper-plane"></i> FOR SALE</a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Pre-Selling</a></li>
@@ -103,14 +109,8 @@
         </footer>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="{{ asset('/js/app.js') }}"></script>
+            <script src="{{ asset('/js/script.js') }}"></script>
             <script src="{{ asset('/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
-            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-            <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
             <!-- Include all compiled plugins (below), or include individual files as needed -->
-        @yield('scripts')
         </body>
     </html>

@@ -1,0 +1,245 @@
+
+#nav-top{
+  padding: 10px 0;
+  ul{
+    > li {
+      a{
+        color: #fff;
+        font-size: 13px;
+        text-decoration: none;
+        i.fa{
+          width: 2.285714em;
+        }
+      }
+    }
+  }
+}
+#nav-mid{
+  background-color: #fff;
+  border-color: #f8f8f8;
+  min-height: 40px;
+  .navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 180px;
+    text-align: center;
+    margin: 0 auto 0 -90px;
+    background-color: transparent;
+    float: left;
+    padding: 15px 15px;
+    font-size: 13px;
+    line-height: 13px;
+    height: 40px;
+  }
+  .navbar-nav{
+    >li{
+      a{
+        font-size: 0.9em;
+        line-height: 12px;
+      }
+    }
+
+  }
+}
+#upnav{
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  #logo{
+    background-image: url('../../images/kcom-logo2.png');
+    height: 344px;
+    width: 163px;
+    position: relative;
+    top: -62px;
+    margin: 0 auto;
+  }
+}
+#banner{
+  /*position: absolute;*/
+  #main-carousel{
+    height: 600px;
+    overflow: hidden;
+    .item{
+      width: 100%; /*slider width*/
+      max-height: 600px; /*slider height*/
+      img{
+        width: 100%; /*img width*/
+      }
+      .container{
+        .carousel-caption{
+          bottom : 0px;
+        }
+      }
+    }
+    .carousel-control{
+      background: none;
+      border: none;
+      top: 50%;
+      font-size: 40px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+#search{
+  .container{
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 20px;
+    position: relative;
+    border-top: 0;
+    //    top: -20px;
+    //    box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+  }
+}
+
+#companyslogan{
+  .container{
+    background: #fff;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-width: 0 1px;
+  }
+}
+#featured{
+  .container{
+    padding: 20px 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 0;
+    h4{
+      text-align: center;
+    }
+    #carousel-featured{
+      .listing-item{
+        padding: 0px;
+        width: 250px;
+        background: #fff;
+        border: 0.1em solid #ddd;
+        border-radius: 3px;
+        overflow: hidden;
+        .image{
+          background: #ddd;
+          height: 180px;
+          background-size: 100%;
+          background-position: center;
+          transition: background-size 0.2s ease-in;
+          -moz-transition: background-size 0.2s ease-in;
+          -ms-transition: background-size 0.2s ease-in;
+          -o-transition: background-size 0.2s ease-in;
+          -webkit-transition: background-size 0.2s ease-in;
+          &:hover{
+            background-size: 120%;
+          }
+        }
+        h4.head{
+          padding: 0 10px;
+        }
+        p.content{
+          padding: 10px;
+          font-size: 13px;
+        }
+        ul.item-specs{
+          -moz-column-count: 2;
+          -moz-column-gap: 2.5em;
+          -webkit-column-count: 2;
+          -webkit-column-gap: 2.5em;
+          column-count: 2;
+          column-gap: 2.5em;
+          margin-left: 3em;
+        }
+        p.foot{
+          padding: 10px;
+          font-size: 11px;
+        }
+      }
+      .owl-item{
+        &.center{
+          .listing-item{
+            border: 0.1em solid #aaa;
+          }
+        }
+      }
+    }
+  }
+}
+#popular{
+  .container{
+    .row{
+      margin: 0;
+      > [class*="col-"]{
+
+        @media (max-width: 512px){
+          width: 100%;
+        }
+      }
+    }
+    border: 1px solid #ddd;
+    border-top: 0;
+    padding: 20px 40px;
+    background: #fff;
+    > h4{
+      text-align: center;
+    }
+    .panel{
+      border-radius: 0;
+      .panel-body{
+        padding: 0;
+        .image-wrap{
+          background-size: cover;
+          @media (max-width: 512px){
+            height: 140px;
+          }
+          @media (min-width: 513px){
+            height: 240px;
+          }
+          @media (min-width: 991px){
+            height: 260px;
+          }
+        }
+        .body-wrap{
+          > h4{
+            margin-bottom: 0;
+          }
+          p{
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#affiliates{
+  .container{
+    padding: 20px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 0;
+    h4{
+      text-align: center;
+    }
+    #carousel-partners{
+      .partner-item{
+        width: 200px;
+        img{
+          cursor: pointer;
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+          filter: gray;
+          filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+          &:hover{
+            -webkit-filter: none;
+            filter: none;
+          }
+        }
+      }
+    }
+  }
+}
