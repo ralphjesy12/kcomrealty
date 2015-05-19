@@ -23,6 +23,10 @@ class IndexController extends Controller {
     {
         return view('index');
     }
+    public function teaser()
+    {
+        return view('teaser');
+    }
     public function showroom()
     {
         return view('showroom');
