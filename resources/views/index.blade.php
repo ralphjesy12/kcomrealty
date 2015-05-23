@@ -55,16 +55,16 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="navbar-brand-centered">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Home</a></li>
+                                <li class="active"><a href="#">HOME</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">For Sale <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOR SALE <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Pre-Selling</a></li>
+                                        <li><a href="#">PRE-SELLING</a></li>
                                         <li><a href="#">Ready for Occupancy</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">For Lease<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOR LEASE<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="#">Property Listing 1</a></li>
                                         <li><a href="#">Property Listing 2</a></li>
@@ -81,9 +81,9 @@
                                     </ul>
                                 </li>
                 -->
-                                <li><a href="#">Financing</a></li>
-                                <li><a href="#">Documentation</a></li>
-                                <li><a href="#">Register your Property</a></li>
+                                <li><a href="#">FINANCING</a></li>
+                                <li><a href="#">DOCUMENTATION</a></li>
+                                <li><a href="#">REGISTER YOUR PROPERTY</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
@@ -182,7 +182,7 @@
                     <label for="input-floorarea">Floor Area <small class="text-muted">(sqm.)</small></label>
                     <input id="input-floorarea" type="number" class="form-control" min="10" step="10" max="500" value="100">
                   </div>
-                <a href="#" class="pull-right text-green"><i class="fa fa-fw fa-play-circle"></i><i>Browse all Listing</i></a>
+                <a href="#" class="pull-right text-green"><i class="fa fa-fw fa-play-circle"></i><b>BROWSE ALL LISTING</b></a>
             </div>
         </div>
     </div>

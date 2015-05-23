@@ -69,7 +69,7 @@
                         <p>Mauris hendrerit eros fermentum nisl ultrices, ac mollis urna blandit. Nullam viverra condimentum commodo. </p>
                     </div>
                     <div class="col-sm-3">
-                        <h4>Quick Links</h4>
+                        <h4>QUICK LINKS</h4>
                         <ul class="fa-ul">
                           <li><i class="fa-li fa fa-caret-right"></i>Single Family</li>
                           <li><i class="fa-li fa fa-caret-right"></i>For Sale</li>
@@ -78,14 +78,14 @@
                         </ul>
                     </div>
                     <div class="col-sm-3">
-                        <h4>Quick Links</h4>
+                        <h4>QUICK LINKS</h4>
                         <ul class="fa-ul">
                           <li><i class="fa-li fa fa-caret-right"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  </li>
                           <li><i class="fa-li fa fa-caret-right"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  </li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
-                        <h4>Contact Info</h4>
+                        <h4>CONTACT INFO</h4>
                        <p>
                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                        </p>
