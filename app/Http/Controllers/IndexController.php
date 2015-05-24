@@ -27,6 +27,10 @@ class IndexController extends Controller {
     {
         return view('teaser');
     }
+    public function search()
+    {
+        return view('search');
+    }
     public function showroom()
     {
         return view('showroom');

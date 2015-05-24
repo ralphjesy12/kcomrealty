@@ -12,8 +12,19 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.scripts(['jquery.min.js','bootstrap.min.js','script.js'], 'public/js/app.js','public/js')
-        .less(['home.less','showroom.less','styles.less','property.less'])
-        .styles(['bootstrap.min.css','font-awesome.min.css'],'public/css/app.css','public/css')
-        .version(['public/css/showroom.css','public/css/property.css','public/css/home.css','public/css/styles.css','public/js/home.js','public/js/showroom.js','public/js/property.js'])
+    mix.scripts(['jquery.min.js','../plugins/jquery-ui/jquery-ui.min.js','bootstrap.min.js','script.js'], 'public/js/app.js','public/js')
+        .less(['home.less','showroom.less','styles.less','property.less','search.less'])
+        .styles(['../plugins/jquery-ui/jquery-ui.min.css','bootstrap.min.css','font-awesome.min.css'],'public/css/app.css','public/css')
+        .version([
+        'public/css/styles.css',
+        'public/css/showroom.css',
+        'public/css/property.css',
+        'public/css/home.css',
+        'public/css/search.css',
+
+        'public/js/home.js',
+        'public/js/showroom.js',
+        'public/js/property.js',
+        'public/js/search.js'
+    ])
 });

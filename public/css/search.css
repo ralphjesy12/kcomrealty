@@ -1,0 +1,19 @@
+body {
+  padding-top: 71px;
+}
+body .navbar-fixed-top {
+  top: 0;
+}
+#filter-section .theme-slider.ui-slider-float {
+  border-radius: 0 !important;
+}
+#filter-section .theme-slider.ui-slider-float .ui-slider-handle {
+  background: #223f1c;
+  border-radius: 0;
+}
+#filter-section .theme-slider.ui-slider-float .ui-slider-handle .ui-slider-tip {
+  border-radius: 0 !important;
+  color: #223f1c;
+}
+
+/*# sourceMappingURL=search.css.map */

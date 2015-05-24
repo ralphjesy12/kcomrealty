@@ -36,13 +36,13 @@
         <div class="tabbable-line tabs-below">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#tab_overview" data-toggle="tab">Overview </a>
+                    <a href="#tab_overview" data-toggle="tab">Overview &amp; Profile</a>
                 </li>
                 <li class="">
-                    <a href="#tab_features" data-toggle="tab">Comments </a>
+                    <a href="#tab_features" data-toggle="tab">Features &amp; Amenities </a>
                 </li>
                 <li>
-                    <a href="#tab_map" data-toggle="tab">Map </a>
+                    <a href="#tab_map" data-toggle="tab">Vicinity Map </a>
                 </li>
                 <li>
                     <a href="#tab_contact" data-toggle="tab">Inquire</a>

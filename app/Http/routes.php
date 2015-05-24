@@ -15,6 +15,7 @@ Route::get('/', 'IndexController@teaser');
 Route::get('/index', 'IndexController@index');
 Route::get('showroom', 'IndexController@showroom');
 Route::get('property', 'IndexController@property');
+Route::get('search', 'IndexController@search');
 
 Route::get('home', 'HomeController@index');
 

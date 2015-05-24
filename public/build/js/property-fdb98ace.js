@@ -10,5 +10,5 @@ $(function(){
     })
         .on('mouseleave', '> li', function() {
         gridster.resize_widget($(this), 1, 1);
-    });
+    }).disable( );
 });
