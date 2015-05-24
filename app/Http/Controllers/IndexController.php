@@ -31,5 +31,9 @@ class IndexController extends Controller {
     {
         return view('showroom');
     }
+    public function property()
+    {
+        return view('property');
+    }
 
 }

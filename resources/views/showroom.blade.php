@@ -165,12 +165,12 @@
         </div>
         <div class="col-sm-5">
             <h4>RELATED PROPERTIES</h4>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled" id="list-relatedprop">
                 <li>
                     <div class="media">
                         <a class="pull-left" href="#"><img class="media-object img-thumbnail" src="http://placehold.it/64x64" width="64" height="64" alt="64x64"></a>
                         <div class="media-body">
-                            <h4 class="media-heading">One-Bedroom Unit</h4>
+                            <h5 class="media-heading">ONE-BEDROOM UNIT</h5>
                             <ul class="list-unstyled">
                                 <li><i class="fa fa-fw fa-building-o"></i> <strong>Project:</strong> The Rise Makati</li>
                                 <li><i class="fa fa-fw fa-phone"></i> <strong>Bedrooms</strong> 1</li>
@@ -184,7 +184,7 @@
                     <div class="media">
                         <a class="pull-left" href="#"><img class="media-object img-thumbnail" src="http://placehold.it/64x64" width="64" height="64" alt="64x64"></a>
                         <div class="media-body">
-                            <h4 class="media-heading">One-Bedroom Unit</h4>
+                            <h5 class="media-heading">ONE-BEDROOM UNIT</h5>
                             <ul class="list-unstyled">
                                 <li><i class="fa fa-fw fa-building-o"></i> <strong>Project:</strong> The Rise Makati</li>
                                 <li><i class="fa fa-fw fa-phone"></i> <strong>Bedrooms</strong> 1</li>
@@ -198,7 +198,7 @@
                     <div class="media">
                         <a class="pull-left" href="#"><img class="media-object img-thumbnail" src="http://placehold.it/64x64" width="64" height="64" alt="64x64"></a>
                         <div class="media-body">
-                            <h4 class="media-heading">One-Bedroom Unit</h4>
+                            <h5 class="media-heading">ONE-BEDROOM UNIT</h5>
                             <ul class="list-unstyled">
                                 <li><i class="fa fa-fw fa-building-o"></i> <strong>Project:</strong> The Rise Makati</li>
                                 <li><i class="fa fa-fw fa-phone"></i> <strong>Bedrooms</strong> 1</li>

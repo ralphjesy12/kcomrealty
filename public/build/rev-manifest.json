@@ -1,7 +1,9 @@
 {
-  "css/showroom.css": "css/showroom-a9f02528.css",
+  "css/showroom.css": "css/showroom-4480185e.css",
+  "css/property.css": "css/property-b5b73d87.css",
   "css/home.css": "css/home-5caa640e.css",
   "css/styles.css": "css/styles-af1ae7db.css",
   "js/home.js": "js/home-6ef41c1c.js",
-  "js/showroom.js": "js/showroom-a6f7591f.js"
+  "js/showroom.js": "js/showroom-a6f7591f.js",
+  "js/property.js": "js/property-3df0ab41.js"
 }

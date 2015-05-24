@@ -11,9 +11,10 @@
 |
 */
 
-    Route::get('/', 'IndexController@teaser');
-    Route::get('/index', 'IndexController@index');
+Route::get('/', 'IndexController@teaser');
+Route::get('/index', 'IndexController@index');
 Route::get('showroom', 'IndexController@showroom');
+Route::get('property', 'IndexController@property');
 
 Route::get('home', 'HomeController@index');
 

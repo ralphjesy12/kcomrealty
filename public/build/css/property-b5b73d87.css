@@ -92,11 +92,5 @@ body .navbar-fixed-top {
   margin-top: -10px;
   padding-bottom: 15px;
 }
-#list-relatedprop > li {
-  margin-bottom: 12px;
-}
-#list-relatedprop > li .media .media-body ul {
-  font-size: 12px;
-}
 
-/*# sourceMappingURL=showroom.css.map */
+/*# sourceMappingURL=property.css.map */
