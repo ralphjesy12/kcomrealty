@@ -28,5 +28,4 @@ $(function(){
         prefix : "",
         suffix : "",
     }).slider("float");
-
 });
