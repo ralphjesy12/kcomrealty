@@ -48,11 +48,26 @@ $(function(){
         if((typeof data['image']=='undefined' || data['image']=='') ||
            (typeof data['dev-feature-name']=='undefined' || data['dev-feature-name']=='') ||
            (typeof data['dev-feature-profile']=='undefined' || data['dev-feature-profile']=='')){
-            alert('Please complete form');
+            bootbox.alert("Please complete form");
         }else{
-            console.log(data);
+            $('#add-dev-submit').prepend('<i class="fa fa-fw fa-spin fa-gear"></i>').addClass('disabled');
+            var formData = new FormData(document.querySelector('#add-dev-form'));
+            $.ajax({
+                url: '/ajax/saveFormDeveloper',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(response){
+                    console.log(response); 
+                    $('#add-dev-submit').removeClass('disabled').text('Property Added').find('i.fa').remove();
+                    $('#modal-add-dev').modal('hide');
+                    setTimeout(function(){
+                        $('#add-dev-submit').text('Add Property');
+                    },1000);
+                }
+            });
         }
-
     });
 
 });

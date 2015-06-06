@@ -1,5 +1,5 @@
 /**********************************************************************************
-            Funções uteis 
+            Funções uteis
             Copyright (c) 2013 Tuyoshi Vinicius (tuyoshi_vinicius@hotmail.com))
             Version: 1.1
 ***********************************************************************************/
@@ -194,7 +194,7 @@ $(function() {
             var OptionsIfEmpty = {
                 ActionToSubmitUpload: "src/php/upload.php",
                 ActionToSubmitCrop: "src/php/crop.php",
-                DefaultImageButton: "src/img/icon_add_image2.png"
+                DefaultImageButton: "src/img/icon_add_image.png"
             };
             var defaults = {
                 Extensions: ["jpg", "png", "gif"],
@@ -335,7 +335,7 @@ $(function() {
                         });
                         ElemSelectProporcao = $("#JtuyoshiCrop #SelectProporcao");
                         ElemSelectOrientacao = $("#JtuyoshiCrop #SelectOrientacao");
-                        if (state == "create") {                            
+                        if (state == "create") {
                             if (Options.CropModes.widescreen || Options.CropModes.letterbox || Options.CropModes.free) {
                                 ElemSelectProporcao.show()
                             } else {
@@ -405,7 +405,7 @@ $(function() {
                                 "height": Sheight,
                                 "left": (response.currentWidth - Swidth) / 2,
                                 "top": (response.currentHeight - Sheight) / 2
-                            });                                                                            
+                            });
                         };
                         ElemSelectProporcao.change();
                     };

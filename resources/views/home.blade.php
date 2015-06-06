@@ -4,6 +4,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/bootbox.js') }}"></script>
 <script src="{{ elixir('js/dashboard.js') }}"></script>
 <script src="plugins/jquery.picture.cut/src/jquery.picture.cut.js"></script>
 @endsection
@@ -256,8 +257,9 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="add-dev-overview">
                         <form id="add-dev-form" class="form-horizontal">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
-                                <div id="container_image_dev" style="margin: 0 auto;height:auto;width:auto;"></div>
+                                <div id="container_image_dev" class="col-sm-10 col-sm-offset-2" style="height:auto;width:auto;float:left;"></div>
                             </div>
                             <div class="form-group">
                                 <label for="dev-feature-name" class="col-sm-2 control-label">Name</label>

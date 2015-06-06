@@ -41,15 +41,18 @@ ul.toggle-tags > li > span.selected {
   padding: 20px;
 }
 #container_image_dev {
-  margin: 0px auto !important;
+  padding: 0;
   min-height: 200px !important;
   min-width: 200px !important;
   border: none !important;
   text-align: center !important;
   overflow: visible !important;
+  padding-left: 30px;
+  background-origin: content-box;
 }
 #container_image_dev img {
   border: 1px solid #ddd !important;
+  margin-left: -15px;
 }
 
 /*# sourceMappingURL=dashboard.css.map */

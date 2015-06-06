@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
-
+use Session;
+use Input;
+use Response;
+use Storage;
 class AjaxController extends Controller {
 
     /*
@@ -18,14 +21,14 @@ class AjaxController extends Controller {
      *
      * @return void
      */
-    public function __construct()
+    public function index($action)
     {
         if ( Session::token() !== Input::get( '_token' ) ) {
             return Response::json( array(
                 'msg' => 'Unauthorized attempt to create setting'
             ) );
         }else{
-            return Response::json($this->{$action});
+            return Response::json($this->{$action}());
         }
     }
 
@@ -39,6 +42,13 @@ class AjaxController extends Controller {
        return [
         'a' => 'b'
        ];
+    }
+    
+    public function saveFormDeveloper()
+    {
+        $ajax = [];
+        include 'Ajax/saveFormDeveloper.php';
+        return $ajax;
     }
 
 }
