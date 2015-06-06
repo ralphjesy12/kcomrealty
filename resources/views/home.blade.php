@@ -1,17 +1,415 @@
-@extends('app')
+@extends('tpl')
+@section('styles')
+<link href="{{ elixir('css/dashboard.css') }}" rel="stylesheet">
+@endsection
 
+@section('scripts')
+<script src="{{ elixir('js/dashboard.js') }}"></script>
+<script src="plugins/jquery.picture.cut/src/jquery.picture.cut.js"></script>
+@endsection
 @section('content')
 <div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
+    <div id="dashboard" class="row tabpanel">
+        <div class="col-xs-3">
+            <div id="dashboard-menu" class="list-group" role="tablist">
+                <a class="list-group-item" href="#dash" aria-controls="dash" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i>&nbsp;Dashboard</a>
+                <a class="list-group-item active" href="#developers" aria-controls="developers" role="tab" data-toggle="tab"><i class="fa fa-briefcase fa-fw"></i>&nbsp; Developers</a>
+                <a class="list-group-item" href="#properties" aria-controls="properties" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i>&nbsp; Properties</a>
+                <a class="list-group-item" href="#units" aria-controls="units" role="tab" data-toggle="tab"><i class="fa fa-home fa-fw"></i>&nbsp; Units</a>
+                <a class="list-group-item" href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog fa-fw"></i>&nbsp; Settings</a>
+            </div>
 
-				<div class="panel-body">
-					You are logged in!
-				</div>
-			</div>
-		</div>
-	</div>
+        </div>
+        <div class="col-xs-9 tab-content">
+            <div role="tabpanel" class="tab-pane" id="dash">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-th fa-fw"></i>&nbsp;Dashboard</div>
+
+                    <div class="panel-body">
+                        You are logged in!
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane active" id="developers">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-fw fa-briefcase"></i>Manage Developers</div>
+                    <table class="table">
+                        <thead>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{ asset('images\affiliates\shang.png') }}" alt="..." width="70px" height="70px">
+                                    </a>
+                                </td>
+                                <td>Shang Properties</td>
+                                <td>For Sale</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modal-add-dev" ><i class="fa fa-fw fa-plus"></i>Add New Developer</a></small>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <div class="btn-toolbar">
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">First</button>
+                                            <button class="btn btn-default btn-xs">Prev</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">1</button>
+                                            <button class="btn btn-default btn-xs">2</button>
+                                            <button class="btn btn-default btn-xs">3</button>
+                                            <button class="btn btn-default btn-xs">4</button>
+                                            <button class="btn btn-default btn-xs">5</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">Next</button>
+                                            <button class="btn btn-default btn-xs">Last</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="properties">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-fw fa-building"></i>Manage Properties</div>
+
+                    <!--
+<div class="panel-body">
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+<div class="btn-group" role="group" aria-label="...">
+<button class="btn btn-default btn-xs"><i class="fa fa-fw fa-plus"></i>Add New Property</button>
 </div>
+</div>
+</div>
+-->
+                    <table class="table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Developer</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Units</th>
+                            <th>Area</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td># 1031</td>
+                                <td>The Rise Makati</td>
+                                <td>Shang Properties</td>
+                                <td>For Sale</td>
+                                <td>Residential</td>
+                                <td>2,822</td>
+                                <td>10,825 sqm</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modal-add-prop" class="text-success"><i class="fa fa-fw fa-plus"></i>Add New Property</a></small>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <div class="btn-toolbar">
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">First</button>
+                                            <button class="btn btn-default btn-xs">Prev</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">1</button>
+                                            <button class="btn btn-default btn-xs">2</button>
+                                            <button class="btn btn-default btn-xs">3</button>
+                                            <button class="btn btn-default btn-xs">4</button>
+                                            <button class="btn btn-default btn-xs">5</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">Next</button>
+                                            <button class="btn btn-default btn-xs">Last</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="units">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-fw fa-home"></i>Manage Units</div>
+                    <table class="table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Bedrooms</th>
+                            <th>Bathrooms</th>
+                            <th>Area</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td># 10832</td>
+                                <td>One-Bedroom with Balcony</td>
+                                <td>The Rise Makati</td>
+                                <td>Pre-selling</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>25</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <small><a href="#"><i class="fa fa-fw fa-plus"></i>Add New Unit</a></small>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <div class="btn-toolbar">
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">First</button>
+                                            <button class="btn btn-default btn-xs">Prev</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">1</button>
+                                            <button class="btn btn-default btn-xs">2</button>
+                                            <button class="btn btn-default btn-xs">3</button>
+                                            <button class="btn btn-default btn-xs">4</button>
+                                            <button class="btn btn-default btn-xs">5</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs">Next</button>
+                                            <button class="btn btn-default btn-xs">Last</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add-dev" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-briefcase"></i>Add New Developer</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="padding-left:20px;">
+                    <li role="presentation" class="active"><a href="#add-dev-overview" aria-controls="add-dev-overview" role="tab" data-toggle="tab">Overview</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="add-dev-overview">
+                        <form id="add-dev-form" class="form-horizontal">
+                            <div class="form-group">
+                                <div id="container_image_dev" style="margin: 0 auto;height:auto;width:auto;"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dev-feature-name" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="dev-feature-name" id="dev-feature-name" placeholder="e.g. The Rise Makati">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dev-feature-profile" class="col-sm-2 control-label">Profile</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" name="dev-feature-profile" id="dev-feature-profile" placeholder="e.g. 3 Basement Levels, 744 residents parking slots"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add-dev-submit" type="button" class="btn btn-success">Add Property</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add-prop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-building"></i>Add New Property</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="padding-left:20px;">
+                    <li role="presentation" class="active"><a href="#add-prop-overview" aria-controls="add-prop-overview" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#add-prop-feature" aria-controls="add-prop-feature" role="tab" data-toggle="tab">Features</a></li>
+                    <li role="presentation"><a href="#add-prop-amenities" aria-controls="add-prop-amenities" role="tab" data-toggle="tab">Amenities</a></li>
+                    <li role="presentation"><a href="#add-prop-images" aria-controls="add-prop-images" role="tab" data-toggle="tab">Images</a></li>
+                    <li role="presentation"><a href="#add-prop-map" aria-controls="add-prop-map" role="tab" data-toggle="tab">Map</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="add-prop-overview">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="prop-feature-name" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="prop-feature-name" id="prop-feature-name" placeholder="e.g. The Rise Makati">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prop-feature-location" class="col-sm-2 control-label">Location</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="prop-feature-location" id="prop-feature-location" placeholder="e.g. Malugay St., Makati City">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prop-feature-developer" class="col-sm-2 control-label">Developer</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="prop-feature-developer" id="prop-feature-developer" placeholder="e.g. Shang Properties">
+                                    <small class="help-text pull-right text-muted">(Optional)</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prop-feature-profile" class="col-sm-2 control-label">Profile</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" name="prop-feature-profile" id="prop-feature-profile" placeholder="e.g. 3 Basement Levels, 744 residents parking slots"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="add-prop-feature">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type here to Add Features">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i>Add</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <hr>
+                        <ul class="list-unstyled columns-three toggle-tags">
+                            <li><span>Elevator</span></li>
+                            <li><span>Restaurant</span></li>
+                            <li><span>Parking Lots</span></li>
+                            <li><span>Library</span></li>
+                            <li><span>Studio</span></li>
+                            <li><span>Swimming Pool</span></li>
+                            <li><span>24-Hour CCTV</span></li>
+                            <li><span>Central Mailbox</span></li>
+                            <li><span>Intercom</span></li>
+                            <li><span>No Smoking Lounges</span></li>
+                            <li><span>Smoking Area</span></li>
+                        </ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="add-prop-amenities">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type here to Add Amenities">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i>Add</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Type here to Add Amenities" value="7,647 sqm of amenities space">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-trash"></i></button>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="add-prop-images">
+                        <!-- Standar Form -->
+                        <h4>Select files from your computer</h4>
+                        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input type="file" name="files[]" id="js-upload-files" multiple>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+                            </div>
+                        </form>
+
+                        <!-- Drop Zone -->
+                        <h4>Or drag and drop files below</h4>
+                        <div class="upload-drop-zone" id="drop-zone">
+                            Just drag and drop files here
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="add-prop-map">
+                        <h4>Insert embed code here from your Map Service Provider</h4>
+                        <textarea class="form-control" rows="3" name="prop-feature-profile"><iframe src="https://www.google.com/maps/d/embed?mid=zcJirKVniIAE.kJfiQ4TGtcDA&hl=en_US" width="640" height="480"></iframe></textarea>
+                        <h4>Preview</h4>
+                        <iframe src="https://www.google.com/maps/d/embed?mid=zcJirKVniIAE.kJfiQ4TGtcDA&hl=en_US" width="100%" height="480"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Add Property</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

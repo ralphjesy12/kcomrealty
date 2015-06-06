@@ -17,10 +17,13 @@ Route::post('/inquire', 'MailController@inquire');
 Route::get('/', 'IndexController@teaser');
 Route::get('/index', 'IndexController@index');
 Route::get('showroom', 'IndexController@showroom');
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::get('register', 'Auth\AuthController@getRegister');
 Route::get('property', 'IndexController@property');
 Route::get('search', 'IndexController@search');
 
 Route::get('home', 'HomeController@index');
+Route::get('ajax/{action}', 'ajaxController@index');
 
 
 

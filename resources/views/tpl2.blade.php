@@ -15,6 +15,19 @@
 <![endif]-->
 
             @yield('styles')
+            <style>
+                .btn-green {
+                    color: #fff;
+                    background-color: #36612d;
+                    border-color: #223f1c;
+                }
+                .btn-green:hover {
+                    color: #fff;
+                    background-color: #223f1c;
+                    border-color: #223f1c;
+                }
+            </style>
+
         </head>
         <body>
 

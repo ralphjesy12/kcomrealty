@@ -47,7 +47,7 @@ class MailController extends Controller {
                                 ->subject('INQUIRE @ K-COM REALTY')
                                 ->from('tech@kcomrealty.com', 'K-COM Realty Technical Support')
                                 ->to('ralphjesy@gmail.com', 'K-COM Realty Inquiry')
-                                ->cc('ralphjesy@gmail.com');
+                                ->cc('tech@kcomrealty.com');
                         });
         }
     }
