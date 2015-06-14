@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class developers extends Model {
+class Developers extends Model {
 
 	protected $table = 'developers';
-    public $timestamps = false;
-
+    protected $fillable = ['image', 'name', 'profile'];
 }

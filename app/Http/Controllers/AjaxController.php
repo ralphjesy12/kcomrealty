@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 use Session;
 use Input;
+use Request;
 use Response;
 use Storage;
 class AjaxController extends Controller {
@@ -23,12 +24,12 @@ class AjaxController extends Controller {
      */
     public function index($action)
     {
-        if ( Session::token() !== Input::get( '_token' ) ) {
+        if ( ! Request::ajax() ) {
             return Response::json( array(
                 'msg' => 'Unauthorized attempt to create setting'
-            ) );
+            ));
         }else{
-            return Response::json($this->{$action}());
+            return Response::json($this->{$action}(Request::all()));
         }
     }
 
@@ -44,10 +45,57 @@ class AjaxController extends Controller {
        ];
     }
     
-    public function saveFormDeveloper()
+    public function getDevelopersTable()
+    {
+        $ajax = [];
+        include 'Ajax/getDevelopersTable.php';
+        return $ajax;
+    }
+    
+    public function getDevelopersList()
+    {
+        $ajax = [];
+        include 'Ajax/getDevelopersList.php';
+        return $ajax;
+    }
+    public function getDeveloperData($input)
+    {
+        $ajax = [];
+        include 'Ajax/getDeveloperData.php';
+        return $ajax;
+    }
+    
+    public function saveFormDeveloper($input)
     {
         $ajax = [];
         include 'Ajax/saveFormDeveloper.php';
+        return $ajax;
+    }
+    public function updateFormDeveloper($input)
+    {
+        $ajax = [];
+        include 'Ajax/updateFormDeveloper.php';
+        return $ajax;
+    }
+    public function saveFormProject($input)
+    {
+        $ajax = [];
+        include 'Ajax/saveFormProject.php';
+        return $ajax;
+    }
+    
+    
+    public function getProjectsTable()
+    {
+        $ajax = [];
+        include 'Ajax/getProjectsTable.php';
+        return $ajax;
+    }
+    
+    public function getProjectsList()
+    {
+        $ajax = [];
+        include 'Ajax/getProjectsList.php';
         return $ajax;
     }
 

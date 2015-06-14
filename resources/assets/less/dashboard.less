@@ -65,5 +65,76 @@ ul.toggle-tags{
     img{
         border: 1px solid #ddd !important;
         margin-left: -15px;
+
+
+    }
+    &.active{
+        > img{
+            background-color: #FFF;
+        }
+    }
+}
+
+#table-dev{
+    > tbody {
+        > tr{
+            > td:nth-child(3){
+                white-space: nowrap;
+                max-width: 300px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}
+
+#add-proj-amenities-list{
+    > li {
+        margin-bottom: 5px;
+    }
+}
+#add-proj-images{
+    .form-group{
+        width: 100%;
+        
+    }
+}
+#add-proj-images-input_list{
+
+    > .MultiFile-label {
+
+        .MultiFile-remove{
+            display: block;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        > span > .MultiFile-label{
+            display: inline-block;
+            border: 1px solid #DDD;
+            padding: 5px;
+            margin: 5px 5px 0 0;
+            width: 30%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+            &:hover{
+                border-color: darkgreen;
+            }
+
+            .MultiFile-title{
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .MultiFile-preview{
+                display: inline-block;
+                max-width: 100% !important;
+                max-height: 110px !important;
+            }
+        }
+
     }
 }

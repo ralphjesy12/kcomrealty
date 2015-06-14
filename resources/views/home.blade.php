@@ -1,28 +1,31 @@
 @extends('tpl')
 @section('styles')
 <link href="{{ elixir('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('plugins/sliptree.bootstrap-tokenfield/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/bootbox.js') }}"></script>
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
 <script src="{{ elixir('js/dashboard.js') }}"></script>
 <script src="plugins/jquery.picture.cut/src/jquery.picture.cut.js"></script>
+<script src="plugins/sliptree.bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
+<script src="plugins/multi-file/jQuery.MultiFile.min.js"></script>
 @endsection
 @section('content')
 <div class="container">
     <div id="dashboard" class="row tabpanel">
         <div class="col-xs-3">
             <div id="dashboard-menu" class="list-group" role="tablist">
-                <a class="list-group-item" href="#dash" aria-controls="dash" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i>&nbsp;Dashboard</a>
-                <a class="list-group-item active" href="#developers" aria-controls="developers" role="tab" data-toggle="tab"><i class="fa fa-briefcase fa-fw"></i>&nbsp; Developers</a>
-                <a class="list-group-item" href="#properties" aria-controls="properties" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i>&nbsp; Properties</a>
+                <a class="list-group-item active" href="#dash" aria-controls="dash" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i>&nbsp;Dashboard</a>
+                <a class="list-group-item" href="#developers" aria-controls="developers" role="tab" data-toggle="tab"><i class="fa fa-briefcase fa-fw"></i>&nbsp; Developers</a>
+                <a class="list-group-item" href="#projects" aria-controls="projects" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i>&nbsp; Projects</a>
                 <a class="list-group-item" href="#units" aria-controls="units" role="tab" data-toggle="tab"><i class="fa fa-home fa-fw"></i>&nbsp; Units</a>
                 <a class="list-group-item" href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog fa-fw"></i>&nbsp; Settings</a>
             </div>
 
         </div>
         <div class="col-xs-9 tab-content">
-            <div role="tabpanel" class="tab-pane" id="dash">
+            <div role="tabpanel" class="tab-pane active" id="dash">
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-th fa-fw"></i>&nbsp;Dashboard</div>
 
@@ -31,10 +34,10 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane active" id="developers">
+            <div role="tabpanel" class="tab-pane" id="developers">
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-fw fa-briefcase"></i>Manage Developers</div>
-                    <table class="table">
+                    <table id="table-dev" class="table">
                         <thead>
                             <th>Logo</th>
                             <th>Name</th>
@@ -66,24 +69,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8">
-                                    <div class="btn-toolbar">
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">First</button>
-                                            <button class="btn btn-default btn-xs">Prev</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">1</button>
-                                            <button class="btn btn-default btn-xs">2</button>
-                                            <button class="btn btn-default btn-xs">3</button>
-                                            <button class="btn btn-default btn-xs">4</button>
-                                            <button class="btn btn-default btn-xs">5</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">Next</button>
-                                            <button class="btn btn-default btn-xs">Last</button>
-                                        </div>
-                                    </div>
+                                <td id="table-dev-pager" colspan="8">
+                                    <button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>
                                 </td>
                             </tr>
                         </tfoot>
@@ -91,20 +78,10 @@
                 </div>
 
             </div>
-            <div role="tabpanel" class="tab-pane" id="properties">
+            <div role="tabpanel" class="tab-pane" id="projects">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-fw fa-building"></i>Manage Properties</div>
-
-                    <!--
-<div class="panel-body">
-<div class="btn-toolbar" role="toolbar" aria-label="...">
-<div class="btn-group" role="group" aria-label="...">
-<button class="btn btn-default btn-xs"><i class="fa fa-fw fa-plus"></i>Add New Property</button>
-</div>
-</div>
-</div>
--->
-                    <table class="table">
+                    <div class="panel-heading"><i class="fa fa-fw fa-building"></i>Manage Projects</div>
+                    <table id="table-proj" class="table">
                         <thead>
                             <th>ID</th>
                             <th>Name</th>
@@ -134,30 +111,14 @@
                             </tr>
                             <tr>
                                 <td colspan="8" class="text-center">
-                                    <small><a href="#" data-toggle="modal" data-target="#modal-add-prop" class="text-success"><i class="fa fa-fw fa-plus"></i>Add New Property</a></small>
+                                    <small><a href="#" data-toggle="modal" data-target="#modal-add-proj" class="text-success"><i class="fa fa-fw fa-plus"></i>Add New Project</a></small>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8" class="text-center">
-                                    <div class="btn-toolbar">
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">First</button>
-                                            <button class="btn btn-default btn-xs">Prev</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">1</button>
-                                            <button class="btn btn-default btn-xs">2</button>
-                                            <button class="btn btn-default btn-xs">3</button>
-                                            <button class="btn btn-default btn-xs">4</button>
-                                            <button class="btn btn-default btn-xs">5</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">Next</button>
-                                            <button class="btn btn-default btn-xs">Last</button>
-                                        </div>
-                                    </div>
+                                <td id="table-proj-pager" colspan="8">
+                                    <button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>
                                 </td>
                             </tr>
                         </tfoot>
@@ -230,8 +191,6 @@
 
             </div>
             <div role="tabpanel" class="tab-pane" id="settings">...</div>
-
-
         </div>
     </div>
 </div>
@@ -280,14 +239,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="add-dev-submit" type="button" class="btn btn-success">Add Property</button>
+                <button id="add-dev-submit" type="button" class="btn btn-success">Add Developer</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modal-add-prop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-add-proj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -300,53 +259,48 @@
             <div role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist" style="padding-left:20px;">
-                    <li role="presentation" class="active"><a href="#add-prop-overview" aria-controls="add-prop-overview" role="tab" data-toggle="tab">Overview</a></li>
-                    <li role="presentation"><a href="#add-prop-feature" aria-controls="add-prop-feature" role="tab" data-toggle="tab">Features</a></li>
-                    <li role="presentation"><a href="#add-prop-amenities" aria-controls="add-prop-amenities" role="tab" data-toggle="tab">Amenities</a></li>
-                    <li role="presentation"><a href="#add-prop-images" aria-controls="add-prop-images" role="tab" data-toggle="tab">Images</a></li>
-                    <li role="presentation"><a href="#add-prop-map" aria-controls="add-prop-map" role="tab" data-toggle="tab">Map</a></li>
+                    <li role="presentation" class="active"><a href="#add-proj-overview" aria-controls="add-proj-overview" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#add-proj-feature" aria-controls="add-proj-feature" role="tab" data-toggle="tab">Features</a></li>
+                    <li role="presentation"><a href="#add-proj-amenities" aria-controls="add-proj-amenities" role="tab" data-toggle="tab">Amenities</a></li>
+                    <li role="presentation"><a href="#add-proj-images" aria-controls="add-proj-images" role="tab" data-toggle="tab">Images</a></li>
+                    <li role="presentation"><a href="#add-proj-map" aria-controls="add-proj-map" role="tab" data-toggle="tab">Map</a></li>
                 </ul>
 
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="add-prop-overview">
-                        <form class="form-horizontal">
+                <form id="add-proj-form" class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="add-proj-overview">
+                        <div class="form-horizontal">
                             <div class="form-group">
                                 <label for="prop-feature-name" class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="prop-feature-name" id="prop-feature-name" placeholder="e.g. The Rise Makati">
+                                    <input type="text" class="form-control" name="proj-feature-name" id="prop-feature-name" placeholder="e.g. The Rise Makati" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="prop-feature-location" class="col-sm-2 control-label">Location</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="prop-feature-location" id="prop-feature-location" placeholder="e.g. Malugay St., Makati City">
+                                    <input type="text" class="form-control" name="proj-feature-location" id="prop-feature-location" placeholder="e.g. Malugay St., Makati City" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="prop-feature-developer" class="col-sm-2 control-label">Developer</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="prop-feature-developer" id="prop-feature-developer" placeholder="e.g. Shang Properties">
+                                    <select class="form-control" name="proj-feature-developer" id="prop-feature-developer"></select>
                                     <small class="help-text pull-right text-muted">(Optional)</small>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="prop-feature-profile" class="col-sm-2 control-label">Profile</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" rows="3" name="prop-feature-profile" id="prop-feature-profile" placeholder="e.g. 3 Basement Levels, 744 residents parking slots"></textarea>
+                                    <textarea class="form-control" rows="3" name="proj-feature-profile" id="prop-feature-profile" placeholder="e.g. 3 Basement Levels, 744 residents parking slots" required></textarea>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="add-prop-feature">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Type here to Add Features">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i>Add</button>
-                            </span>
-                        </div><!-- /input-group -->
+                    <div role="tabpanel" class="tab-pane" id="add-proj-feature">
+                        <input id="add-proj-features" name="proj-feature-lists" type="text" class="form-control" required>
                         <hr>
-                        <ul class="list-unstyled columns-three toggle-tags">
+                        <ul id="add-proj-feature-list" class="list-unstyled columns-three toggle-tags">
                             <li><span>Elevator</span></li>
                             <li><span>Restaurant</span></li>
                             <li><span>Parking Lots</span></li>
@@ -360,55 +314,39 @@
                             <li><span>Smoking Area</span></li>
                         </ul>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="add-prop-amenities">
+                    <div role="tabpanel" class="tab-pane" id="add-proj-amenities">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Type here to Add Amenities">
+                            <input id="add-proj-amenities-input" type="text" class="form-control" placeholder="Type here to Add Amenities">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i>Add</button>
+                                <button id="add-proj-amenities-add" class="btn btn-default" type="button"><i class="fa fa-fw fa-plus"></i>Add</button>
                             </span>
                         </div><!-- /input-group -->
                         <hr>
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type here to Add Amenities" value="7,647 sqm of amenities space">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><i class="fa fa-trash"></i></button>
-                                    </span>
-                                </div>
-                            </li>
+                        <ul id="add-proj-amenities-list" class="list-unstyled">
                         </ul>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="add-prop-images">
+                    <div role="tabpanel" class="tab-pane" id="add-proj-images">
                         <!-- Standar Form -->
                         <h4>Select files from your computer</h4>
-                        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <input type="file" name="files[]" id="js-upload-files" multiple>
-                                </div>
-                                <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="file" name="proj-images[]" id="add-proj-images-input" class="with-preview" multiple required>
                             </div>
-                        </form>
-
-                        <!-- Drop Zone -->
-                        <h4>Or drag and drop files below</h4>
-                        <div class="upload-drop-zone" id="drop-zone">
-                            Just drag and drop files here
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="add-prop-map">
+                    <div role="tabpanel" class="tab-pane" id="add-proj-map">
                         <h4>Insert embed code here from your Map Service Provider</h4>
-                        <textarea class="form-control" rows="3" name="prop-feature-profile"><iframe src="https://www.google.com/maps/d/embed?mid=zcJirKVniIAE.kJfiQ4TGtcDA&hl=en_US" width="640" height="480"></iframe></textarea>
+                        <textarea class="form-control" rows="3" name="proj-feature-map" id="proj-feature-map" required></textarea>
+                        <input type="hidden" id="proj-feature-map-source" name="proj-feature-map-source" value="">
                         <h4>Preview</h4>
-                        <iframe src="https://www.google.com/maps/d/embed?mid=zcJirKVniIAE.kJfiQ4TGtcDA&hl=en_US" width="100%" height="480"></iframe>
+                        <iframe id="proj-feature-map-preview" src="" width="100%" height="480"></iframe>
                     </div>
-                </div>
+                </form>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Add Property</button>
+                <button id="add-proj-submit" type="button" class="btn btn-success">Add Property</button>
             </div>
         </div>
     </div>
