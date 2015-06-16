@@ -24,6 +24,7 @@ Route::get('search', 'IndexController@search');
 
 Route::get('home', 'HomeController@index');
 Route::post('ajax/{action}', 'ajaxController@index');
+Route::post('ajax/{action}/{type}', 'ajaxController@index2');
 
 
 

@@ -145,7 +145,7 @@ $(function(){
                 if(response.data.length>0){
                     $.each(response.data,function(i,v){
 
-                        $('#table-dev tbody').append('<tr data-id="'+v.id+'"><td><a href="#" class="thumbnail"><img src="/images/developers/'+v.image+'" alt="..." width="100px" height="100px"></a></td><td>'+v.name+'</td><td>'+v.profile+'</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs update-dev-open"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
+                        $('#table-dev tbody').append('<tr data-id="'+v.id+'"><td><a href="#" class="thumbnail"><img src="/images/developers/'+v.image+'" alt="..." width="100px" height="100px"></a></td><td>'+v.name+'</td><td>'+v.profile+'</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs update-dev-open"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs btn-delete-dev"><i class="fa fa-trash-o"></i></button></div></td></tr>');
 
                     });
                 }else{
@@ -226,39 +226,6 @@ $(function(){
         STRING: {
             remove: '<i class="fa fa-fw fa-times"></i>Remove All Images'
         },
-        onFileRemove: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
-        },
-        afterFileRemove: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>afterFileRemove - ' + value + '</li>')
-        },
-        onFileAppend: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileAppend - ' + value + '</li>')
-        },
-        afterFileAppend: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>afterFileAppend - ' + value + '</li>')
-        },
-        onFileSelect: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileSelect - ' + value + '</li>')
-        },
-        afterFileSelect: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
-        },
-        onFileInvalid: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileInvalid - ' + value + '</li>')
-        },
-        onFileDuplicate: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileDuplicate - ' + value + '</li>')
-        },
-        onFileTooMany: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileTooMany - ' + value + '</li>')
-        },
-        onFileTooBig: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileTooBig - ' + value + '</li>')
-        },
-        onFileTooMuch: function(element, value, master_element) {
-            //            $('#F9-Log').append('<li>onFileTooMuch - ' + value + '</li>')
-        }
     });
     $('#proj-feature-map').change(function(){
         var embedstring = $(this).val();
@@ -284,23 +251,24 @@ $(function(){
             contentType: false,
             type: 'POST',
             success: function(response){
-                console.log(response);
                 if(response){
                     $('#add-proj-submit').removeClass('disabled').text('Project Added').find('i.fa').remove();
                     $('#modal-add-proj').modal('hide');
-                    $('a[data-toggle="tab"][href="#projcts"]').trigger('shown.bs.tab');
+                    $('a[data-toggle="tab"][href="#projects"]').trigger('shown.bs.tab');
                     setTimeout(function(){
                         $('#add-proj-submit').text('Add Project');
                     },1000);
                 }else{
-                    bootbox.alert('Please complete the required fields');
+                    bootbox.alert('Please complete the required fields',function(){
+                        $('#add-proj-submit').removeClass('disabled').text('Add Project').find('i.fa').remove();
+                    });
                 }
 
             }
         });
 
     });
-    
+
     $('a[data-toggle="tab"][href="#projects"]').on('shown.bs.tab', function (e) {
         $('#table-proj tbody').empty();
         $('#table-proj-pager').html('<button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>');
@@ -313,16 +281,53 @@ $(function(){
             success: function(response){
                 if(response.data.length>0){
                     $.each(response.data,function(i,v){
-                        $('#table-proj tbody').append('<tr data-id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.developer+'</td><td>For Sale</td><td>Residential</td><td>2,822</td><td>10,825 sqm</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
+                        $('#table-proj tbody').append('<tr data-id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.developer+'</td><td>'+v.type+'</td><td>'+v.category+'</td><td>'+v.unit.format(0,3)+'</td><td>'+v.area.format(0,3)+' sqm</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-delete-proj btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
 
                     });
                 }else{
-                    $('#table-proj tbody').html('<tr><td colspan="4" class="text-center">No Projects yet.</td></tr>');
+                    $('#table-proj tbody').html('<tr><td colspan="8" class="text-center">No Projects yet.</td></tr>');
                 }
                 $('#table-proj tbody').append('<tr><td colspan="8" class="text-center"><small><a href="#" data-toggle="modal" data-target="#modal-add-proj" ><i class="fa fa-fw fa-plus"></i>Add New Project</a></small></td></tr>');
                 updatepagination($('#table-proj-pager'),response);
             }
         });
+    });
+
+    $('#table-dev').delegate('.btn-delete-dev','click',function(){
+        var id = $(this).parents('tr').data('id');
+        if(typeof id != "undefined"){
+            bootbox.confirm("Are you sure you want to delete this developer?",function(response){
+                if(response){
+                    $.post('/ajax/dashboard/deleteDeveloper',{ id : id },function(response){
+                        if(response){
+                            bootbox.alert('Developer deleted successfully',function(){
+                                $('a[data-toggle="tab"][href="#developers"]').trigger('shown.bs.tab');
+                            });
+                        }else{
+                            bootbox.alert('An error occured while deleting developer.');
+                        }
+                    },'json');
+                }
+            })
+        }
+    });
+    $('#table-proj').delegate('.btn-delete-proj','click',function(){
+        var id = $(this).parents('tr').data('id');
+        if(typeof id != "undefined"){
+            bootbox.confirm("Are you sure you want to delete this project?",function(response){
+                if(response){
+                    $.post('/ajax/dashboard/deleteProject',{ id : id },function(response){
+                        if(response){
+                            bootbox.alert('Project deleted successfully',function(){
+                                $('a[data-toggle="tab"][href="#projects"]').trigger('shown.bs.tab');
+                            });
+                        }else{
+                            bootbox.alert('An error occured while deleting project.');
+                        }
+                    },'json');
+                }
+            })
+        }
     });
 });
 

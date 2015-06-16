@@ -295,6 +295,40 @@
                                     <textarea class="form-control" rows="3" name="proj-feature-profile" id="prop-feature-profile" placeholder="e.g. 3 Basement Levels, 744 residents parking slots" required></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="proj-feature-type" class="col-sm-2 control-label">Type</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="proj-feature-type" name="proj-feature-type">
+                                        <option>For Sale</option>
+                                        <option>For Lease</option>
+                                        <option>Pre Selling</option>
+                                        <option>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-feature-category" class="col-sm-2 control-label">Category</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="proj-feature-category" name="proj-feature-category">
+                                        <option>Condominium</option>
+                                        <option>Townhouse</option>
+                                        <option>House &amp; Lot</option>
+                                        <option>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-feature-area" class="col-sm-2 control-label">Area</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="proj-feature-area" name="proj-feature-area" placeholder="10,123 sqm.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-feature-units" class="col-sm-2 control-label">Units</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="proj-feature-units" name="proj-feature-units" placeholder="10,123 sqm.">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="add-proj-feature">

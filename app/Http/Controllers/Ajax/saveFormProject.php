@@ -12,11 +12,13 @@ if(
     $project->name = $input['proj-feature-name'];
     $project->location = $input['proj-feature-location'];
     $project->profile = $input['proj-feature-profile'];
-    
+    $project->type = $input['proj-feature-type'];
+    $project->category = $input['proj-feature-category'];
+
     if(!empty($input['proj-feature-developer'])){
         $project->developer = $input['proj-feature-developer'];
     }
-    
+
     if(!empty($input['proj-feature-lists'])){
         $project->features = json_encode(explode(', ',$input['proj-feature-lists']));
     }
@@ -31,14 +33,17 @@ if(
         $moveFolder = public_path().'\\images\\projects\\';
         $images = Input::file('proj-images');
         foreach($images as $k=>$v){
-            $outputname = hash('crc32b','$project->name') . '_' . $v->getClientOriginalName();
-            Image::make($v)->fit(1000,1000,function($constraint){
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->save($moveFolder.$outputname);
-            $imagepack[] = $outputname;
+            if(!empty($v)){
+                $outputname = hash('crc32b','$project->name') . '_' . $v->getClientOriginalName();
+                Image::make($v)->fit(1000,1000,function($constraint){
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save($moveFolder.$outputname);
+                $imagepack[] = $outputname;
+            }
         };
-        $project->images = json_encode($imagepack);
+        if(!empty($imagepack))
+            $project->images = json_encode($imagepack);
     }
     $project->save();
     $ajax = true;

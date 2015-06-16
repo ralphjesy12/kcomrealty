@@ -32,6 +32,18 @@ class AjaxController extends Controller {
             return Response::json($this->{$action}(Request::all()));
         }
     }
+    
+    public function index2($action,$type)
+    {
+        if ( ! Request::ajax() ) {
+            return Response::json( array(
+                'msg' => 'Unauthorized attempt to create setting'
+            ));
+        }else{
+            return Response::json($this->{$action}(Request::all(),$type));
+        }
+    }
+
 
     /**
      * Show the application dashboard to the user.
@@ -96,6 +108,12 @@ class AjaxController extends Controller {
     {
         $ajax = [];
         include 'Ajax/getProjectsList.php';
+        return $ajax;
+    }
+    public function dashboard($input,$type)
+    {
+        $ajax = [];
+        include 'Ajax/dashboard.php';
         return $ajax;
     }
 

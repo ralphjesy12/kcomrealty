@@ -15,17 +15,18 @@ class CreateProjectsTable extends Migration {
 		Schema::create('projects', function(Blueprint $table)
 		{
 			$table->increments('id');
-            
             $table->text('name');
             $table->text('location');
             $table->tinyInteger('developer');
             $table->mediumText('profile');
-            
+            $table->text('type');
+            $table->text('category');
+            $table->integer('area');
+            $table->integer('unit');
             $table->json('features');
             $table->json('amenities');
             $table->json('images');
             $table->text('map');
-            
 			$table->timestamps();
 		});
 	}
