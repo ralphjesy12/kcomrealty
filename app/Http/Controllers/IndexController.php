@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
-
+use Input;
+use Request;
 class IndexController extends Controller {
 
     /*
@@ -20,6 +21,28 @@ class IndexController extends Controller {
      * @return Response
      */
     public function index()
+    {
+        return view('indexnew');
+    }
+    public function developer($id,$name)
+    {
+        $d = [];
+        include 'Models/indexDeveloper.php';
+        return view('developer',$d);
+    }
+    public function project($id,$name)
+    {
+        $d = [];
+        include 'Models/indexProject.php';
+        return view('project',$d);
+    }
+    public function developers()
+    {
+        $d = [];
+        include 'Models/indexDevelopers.php';
+        return view('developers',$d);
+    }
+    public function index2()
     {
         return view('index');
     }

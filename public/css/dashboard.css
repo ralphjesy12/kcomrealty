@@ -66,15 +66,18 @@ ul.toggle-tags > li > span.selected {
 #add-proj-amenities-list > li {
   margin-bottom: 5px;
 }
-#add-proj-images .form-group {
+#add-proj-images .form-group,
+#add-unit-images .form-group {
   width: 100%;
 }
-#add-proj-images-input_list > .MultiFile-label .MultiFile-remove {
+#add-proj-images-input_list > .MultiFile-label .MultiFile-remove,
+#add-unit-images-input_list > .MultiFile-label .MultiFile-remove {
   display: block;
   font-weight: bold;
   text-decoration: none;
 }
-#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label {
+#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label,
+#add-unit-images-input_list > .MultiFile-label > span > .MultiFile-label {
   display: inline-block;
   border: 1px solid #DDD;
   padding: 5px;
@@ -85,17 +88,20 @@ ul.toggle-tags > li > span.selected {
   overflow: hidden;
   min-height: 150px;
 }
-#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label:hover {
+#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label:hover,
+#add-unit-images-input_list > .MultiFile-label > span > .MultiFile-label:hover {
   border-color: darkgreen;
 }
-#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-title {
+#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-title,
+#add-unit-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-title {
   display: block;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-preview {
+#add-proj-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-preview,
+#add-unit-images-input_list > .MultiFile-label > span > .MultiFile-label .MultiFile-preview {
   display: inline-block;
   max-width: 100% !important;
   max-height: 110px !important;

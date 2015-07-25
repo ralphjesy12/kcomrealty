@@ -1,0 +1,50 @@
+body {
+  background: #fff;
+}
+#main-banner {
+  margin-top: -18px;
+  max-height: 400px;
+}
+#main-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  border-radius: 3px;
+}
+#main-banner li {
+  padding: 0;
+}
+#project-listing {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#project-listing li {
+  margin-bottom: 20px;
+}
+#project-listing li img {
+  margin-top: -20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+table.project-details {
+  table-layout: fixed;
+}
+table.project-details th,
+table.project-details td {
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+table.unit-listing {
+  table-layout: fixed;
+}
+table.unit-listing th,
+table.unit-listing td {
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+table.unit-listing th sup,
+table.unit-listing td sup {
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=developer.css.map */

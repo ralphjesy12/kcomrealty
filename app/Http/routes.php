@@ -16,6 +16,10 @@ Route::post('/inquire', 'MailController@inquire');
 
 Route::get('/', 'IndexController@teaser');
 Route::get('/index', 'IndexController@index');
+Route::get('/developers', 'IndexController@developers');
+Route::get('/developer/{id}/{name}', 'IndexController@developer');
+Route::get('/project/{id}/{name}', 'IndexController@project');
+Route::get('/index2', 'IndexController@index2');
 Route::get('showroom', 'IndexController@showroom');
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::get('register', 'Auth\AuthController@getRegister');

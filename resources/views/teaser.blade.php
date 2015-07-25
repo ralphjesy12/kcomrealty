@@ -14,6 +14,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         background-image: url(images/teaserbglo.jpg);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.18);
         padding-bottom : 30px;
@@ -274,7 +275,7 @@
                 <!-- Email -->
                 <p><a href="#" class="text-white"><i class="fa fa-envelope"></i> &nbsp; inquire@kcomrealty.com</a></p>
                 <!-- Phone -->
-                <p><a href="#" class="text-white"><i class="fa fa-phone"></i> &nbsp; (02) 509-3837</a></p>
+                <p><a href="#" class="text-white"><i class="fa fa-phone"></i> &nbsp; (02) 509-3837 / +639174280828</a></p>
                 <!-- Website -->
                 <p><a href="#" class="text-white"><i class="fa fa-globe"></i> &nbsp; www.kcomrealty.com</a></p>
 

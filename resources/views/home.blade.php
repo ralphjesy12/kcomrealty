@@ -126,14 +126,13 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="units">
-
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-fw fa-home"></i>Manage Units</div>
-                    <table class="table">
+                    <table id="table-unit" class="table">
                         <thead>
                             <th>ID</th>
                             <th>Description</th>
-                            <th>Property</th>
+                            <th>Project</th>
                             <th>Type</th>
                             <th>Bedrooms</th>
                             <th>Bathrooms</th>
@@ -141,54 +140,17 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td># 10832</td>
-                                <td>One-Bedroom with Balcony</td>
-                                <td>The Rise Makati</td>
-                                <td>Pre-selling</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>25</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button>
-                                        <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="8" class="text-center">
-                                    <small><a href="#"><i class="fa fa-fw fa-plus"></i>Add New Unit</a></small>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8">
-                                    <div class="btn-toolbar">
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">First</button>
-                                            <button class="btn btn-default btn-xs">Prev</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">1</button>
-                                            <button class="btn btn-default btn-xs">2</button>
-                                            <button class="btn btn-default btn-xs">3</button>
-                                            <button class="btn btn-default btn-xs">4</button>
-                                            <button class="btn btn-default btn-xs">5</button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-xs">Next</button>
-                                            <button class="btn btn-default btn-xs">Last</button>
-                                        </div>
-                                    </div>
+                                <td id="table-unit-pager" colspan="8">
+                                    <button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-
             </div>
             <div role="tabpanel" class="tab-pane" id="settings">...</div>
         </div>
@@ -385,5 +347,106 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add-unit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-briefcase"></i>Add New Unit</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="padding-left:20px;">
+                    <li role="presentation" class="active"><a href="#add-unit-overview" aria-controls="add-unit-overview" role="tab" data-toggle="tab">Overview</a></li>
+                    <li role="presentation"><a href="#add-unit-images" aria-controls="add-unit-images" role="tab" data-toggle="tab">Images</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <form id="add-unit-form" class="tab-content">
+                    <div role="tabpanel" class="tab-pane active form-horizontal" id="add-unit-overview">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label for="unit-feature-project" class="col-sm-2 control-label">Project</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="unit-feature-project" id="unit-feature-project"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-description" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="unit-feature-description" id="unit-feature-description" placeholder="e.g. The Rise Makati">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-type" class="col-sm-2 control-label">Type</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="unit-feature-type" id="unit-feature-type" >
+                                    <option>For Sale</option>
+                                    <option>For Lease</option>
+                                    <option>Pre Selling</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-studio" class="col-sm-2 control-label">Studio</label>
+                            <div class="col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="true" name="unit-feature-studio" id="unit-feature-studio" >
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-bedrooms" class="col-sm-2 control-label">Bedrooms</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="unit-feature-bedrooms" id="unit-feature-bedrooms" placeholder="e.g. The Rise Makati">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-bathroom" class="col-sm-2 control-label">Bathroom</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="unit-feature-bathroom" id="unit-feature-bathroom" placeholder="e.g. The Rise Makati">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-price" class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="unit-feature-price" id="unit-feature-price" placeholder="e.g. The Rise Makati">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit-feature-area" class="col-sm-2 control-label">Area</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="unit-feature-area" id="unit-feature-area" placeholder="e.g. The Rise Makati">
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="add-unit-images">
+                        <!-- Standar Form -->
+                        <h4>Select files from your computer</h4>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="file" name="unit-images[]" id="add-unit-images-input" class="with-preview" multiple required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add-unit-submit" type="button" class="btn btn-success">Add Unit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection

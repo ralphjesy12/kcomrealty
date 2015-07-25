@@ -1,3 +1,21 @@
+var slug = function(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+};
+
 $(function(){
     $('ul.toggle-tags > li > span').click(function(){
         $(this).toggleClass('selected');
@@ -122,11 +140,11 @@ $(function(){
         var start = data.from;
         do{
             pagerstring += '<button class="btn btn-default btn-xs '+(start!=data.current_page ? '' : 'disabled')+'" data-page="'+start+'">'+start+'</button>';
-        }while(start++ < data.to);
+        }while(start++ < data.last_page);
         pagerstring += '</div>';
         pagerstring += '<div class="btn-group">';
         pagerstring += '<button class="btn btn-default btn-xs '+(data.next_page_url ? '' : 'disabled')+'" data-page="'+( data.next_page_url ? data.current_page + 1 : null)+'">Next</button>';
-        pagerstring += '<button class="btn btn-default btn-xs '+(data.to!=data.current_page ? '' : 'disabled')+'" data-page="'+data.to+'">Last</button>';
+        pagerstring += '<button class="btn btn-default btn-xs '+(data.last_page!=data.current_page ? '' : 'disabled')+'" data-page="'+data.last_page+'">Last</button>';
         pagerstring += '</div>';
         pagerstring += '</div>';
         elem.html(pagerstring);
@@ -145,7 +163,7 @@ $(function(){
                 if(response.data.length>0){
                     $.each(response.data,function(i,v){
 
-                        $('#table-dev tbody').append('<tr data-id="'+v.id+'"><td><a href="#" class="thumbnail"><img src="/images/developers/'+v.image+'" alt="..." width="100px" height="100px"></a></td><td>'+v.name+'</td><td>'+v.profile+'</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs update-dev-open"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs btn-delete-dev"><i class="fa fa-trash-o"></i></button></div></td></tr>');
+                        $('#table-dev tbody').append('<tr data-id="'+v.id+'"><td><a href="#" class="thumbnail"><img src="/images/developers/'+v.image+'" alt="..." width="100px" height="100px"></a></td><td>'+v.name+'</td><td>'+v.profile+'</td><td><div class="btn-group"><a class="btn btn-default btn-xs" href="/developer/'+v.id+'/'+slug(v.name)+'" target="_blank"><i class="fa fa-folder-open"></i></a><button class="btn btn-default btn-xs update-dev-open"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-xs btn-delete-dev"><i class="fa fa-trash-o"></i></button></div></td></tr>');
 
                     });
                 }else{
@@ -268,7 +286,6 @@ $(function(){
         });
 
     });
-
     $('a[data-toggle="tab"][href="#projects"]').on('shown.bs.tab', function (e) {
         $('#table-proj tbody').empty();
         $('#table-proj-pager').html('<button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>');
@@ -281,7 +298,7 @@ $(function(){
             success: function(response){
                 if(response.data.length>0){
                     $.each(response.data,function(i,v){
-                        $('#table-proj tbody').append('<tr data-id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.developer+'</td><td>'+v.type+'</td><td>'+v.category+'</td><td>'+v.unit.format(0,3)+'</td><td>'+v.area.format(0,3)+' sqm</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-delete-proj btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
+                        $('#table-proj tbody').append('<tr data-id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.developer+'</td><td>'+v.type+'</td><td>'+v.category+'</td><td>'+parseFloat(v.unit).format(0,3)+'</td><td>'+parseFloat(v.area).format(0,3)+' sqm</td><td><div class="btn-group"><a class="btn btn-default btn-xs" href="/project/'+v.id+'/'+slug(v.name)+'" target="_blank"><i class="fa fa-folder-open"></i></a><button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-delete-proj btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
 
                     });
                 }else{
@@ -292,7 +309,6 @@ $(function(){
             }
         });
     });
-
     $('#table-dev').delegate('.btn-delete-dev','click',function(){
         var id = $(this).parents('tr').data('id');
         if(typeof id != "undefined"){
@@ -329,7 +345,110 @@ $(function(){
             })
         }
     });
+    
+    /* UNITS */
+    $('#add-unit-images-input').MultiFile({
+        max: 10,
+        max_size: 2048,
+        accept: 'jpg|png|gif|bmp',
+        STRING: {
+            remove: '<i class="fa fa-fw fa-times"></i>Remove All Images'
+        },
+    });
+    $('#modal-add-unit').on('show.bs.modal',function(){
+
+        /* GET DEVELOPER OPTIONS */
+        $('#unit-feature-project').html('<option disabled>Getting Project List...</option>').addClass('disabled');
+        $.post('/ajax/getProjectsList',{},function(response){
+            console.log(response);
+            $('#unit-feature-project').empty();
+            if(response.length>0){
+                $.each(response,function(i,v){
+                    $('#unit-feature-project').append('<option value="'+v.id+'">'+v.name+'</option>');
+                });
+            }
+            $('#unit-feature-project').prepend('<option value="false">No Project</option>');
+        },'json');
+
+
+    });
+    $('#add-unit-submit').click(function(){
+        $('#add-unit-form').submit();
+
+    }); 
+    $('#add-unit-form').on('submit',function(e){
+        e.preventDefault();
+        $('#add-unit-submit').prepend('<i class="fa fa-fw fa-spin fa-gear"></i>').addClass('disabled');
+        var formData = new FormData(document.querySelector('#add-unit-form'));
+        $.ajax({
+            url: '/ajax/saveFormUnit',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(response){
+                if(response){
+                    $('#add-unit-submit').removeClass('disabled').text('Unit Added').find('i.fa').remove();
+                    $('#modal-add-unit').modal('hide');
+                    $('a[data-toggle="tab"][href="#units"]').trigger('shown.bs.tab');
+                    setTimeout(function(){
+                        $('#add-unit-submit').text('Add Unit');
+                    },1000);
+                }else{
+                    bootbox.alert('Please complete the required fields',function(){
+                        $('#add-unit-submit').removeClass('disabled').text('Add Unit').find('i.fa').remove();
+                    });
+                }
+
+            }
+        });
+
+    });
+    $('a[data-toggle="tab"][href="#units"]').on('shown.bs.tab', function (e) {
+        $('#table-unit tbody').empty();
+        $('#table-unit-pager').html('<button class="btn btn-default btn-xs disabled">Loading Table . Please wait...</button>');
+        $.ajax({
+            url: '/ajax/getUnitsTable',
+            data: {},
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(response){
+                if(response.data.length>0){
+                    $.each(response.data,function(i,v){
+                        $('#table-unit tbody').append('<tr data-id="'+v.id+'"><td>'+v.id+'</td><td>'+v.description+'</td><td>'+v.project+'</td><td>'+v.type+'</td><td>'+parseInt(v.bedrooms).format(0,3)+'</td><td>'+parseInt(v.bathroom).format(0,3)+'</td><td>'+parseFloat(v.area).format(0,3)+' sqm</td><td><div class="btn-group"><button class="btn btn-default btn-xs"><i class="fa fa-folder-open"></i></button><button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button><button class="btn btn-default btn-delete-unit btn-xs"><i class="fa fa-trash-o"></i></button></div></td></tr>');
+
+                    });
+                }else{
+                    $('#table-unit tbody').html('<tr><td colspan="8" class="text-center">No Units yet.</td></tr>');
+                }
+                $('#table-unit tbody').append('<tr><td colspan="8" class="text-center"><small><a href="#" data-toggle="modal" data-target="#modal-add-unit" ><i class="fa fa-fw fa-plus"></i>Add New Unit</a></small></td></tr>');
+                updatepagination($('#table-unit-pager'),response);
+            }
+        });
+    });
+    $('#table-unit').delegate('.btn-delete-unit','click',function(){
+        var id = $(this).parents('tr').data('id');
+        if(typeof id != "undefined"){
+            bootbox.confirm("Are you sure you want to delete this unit?",function(response){
+                if(response){
+                    $.post('/ajax/dashboard/deleteUnit',{ id : id },function(response){
+                        if(response){
+                            bootbox.alert('Unit deleted successfully',function(){
+                                $('a[data-toggle="tab"][href="#units"]').trigger('shown.bs.tab');
+                            });
+                        }else{
+                            bootbox.alert('An error occured while deleting unit.');
+                        }
+                    },'json');
+                }
+            })
+        }
+    });
+    
 });
+
+
 
 
 

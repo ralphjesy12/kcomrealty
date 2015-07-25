@@ -303,10 +303,7 @@
   <div class="container">
 <h4>FEATURED PARTNERS</h4>
     <div id="carousel-partners">
-          <div class="partner-item">
-          <img src="{{ asset('/images/affiliates/ayala.png') }}">
-
-          </div>
+          <div class="partner-item"><img src="{{ asset('/images/affiliates/ayala.png') }}"></div>
           <div class="partner-item"><img src="{{ asset('/images/affiliates/dmci.png') }}"></div>
           <div class="partner-item"><img src="{{ asset('/images/affiliates/ortigas.png') }}"></div>
           <div class="partner-item"><img src="{{ asset('/images/affiliates/shang.png') }}"></div>

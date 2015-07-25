@@ -1,5 +1,9 @@
 {
   "css/styles.css": "css/styles-af1ae7db.css",
-  "css/dashboard.css": "css/dashboard-fefbfd16.css",
-  "js/dashboard.js": "js/dashboard-cfe7eac8.js"
+  "css/homenew.css": "css/homenew-3db4d169.css",
+  "css/developer.css": "css/developer-9b3c9894.css",
+  "css/dashboard.css": "css/dashboard-df66a341.css",
+  "js/developer.js": "js/developer-6b37ab58.js",
+  "js/homenew.js": "js/homenew-cefd7d14.js",
+  "js/dashboard.js": "js/dashboard-f0dc9c7b.js"
 }

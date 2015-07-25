@@ -96,11 +96,24 @@ class AjaxController extends Controller {
         return $ajax;
     }
     
+    public function saveFormUnit($input)
+    {
+        $ajax = [];
+        include 'Ajax/saveFormUnit.php';
+        return $ajax;
+    }
     
     public function getProjectsTable()
     {
         $ajax = [];
         include 'Ajax/getProjectsTable.php';
+        return $ajax;
+    }
+    
+    public function getUnitsTable()
+    {
+        $ajax = [];
+        include 'Ajax/getUnitsTable.php';
         return $ajax;
     }
     
