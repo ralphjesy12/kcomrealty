@@ -1,15 +1,12 @@
 @extends('tplnew')
 @section('styles')
 <link href="{{ elixir('css/developer.css') }}" rel="stylesheet">
-<link href="{{ asset('css/developer.css') }}" rel="stylesheet">
 
-<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap-image-gallery/css/bootstrap-image-gallery.min.css') }}">
 @endsection
 
 @section('scripts')
 <script src="{{ elixir('js/developer.js') }}"></script>
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="{{ asset('plugins/bootstrap-image-gallery/js/bootstrap-image-gallery.min.js') }}"></script>
 <script>
     $(function(){
@@ -246,7 +243,7 @@ foreach($children as $c){
                 <!-- 4:3 aspect ratio -->
 
                 <div class="embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item" src="{{ $info['map'] }}" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb={{ $info['map'] }}" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

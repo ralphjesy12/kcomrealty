@@ -25,16 +25,20 @@ elixir(function(mix) {
 //        .styles(['../plugins/jquery-ui/jquery-ui.min.css','bootstrap.min.css','font-awesome.min.css'],'public/css/app.css','public/css')
         .version([
         'public/css/styles.css',
-//        'public/css/showroom.css',
-//        'public/css/property.css',
-//        'public/css/home.css',
-//        'public/css/search.css',
+        'public/css/homenew.css',
+        'public/css/showroom.css',
+        'public/css/property.css',
+        'public/css/home.css',
+        'public/css/search.css',
+        'public/css/developer.css',
         'public/css/dashboard.css',
 
-//        'public/js/home.js',
+        'public/js/home.js',
+        'public/js/homenew.js',
         'public/js/dashboard.js',
-//        'public/js/showroom.js',
-//        'public/js/property.js',
-//        'public/js/search.js'
+        'public/js/developer.js',
+        'public/js/showroom.js',
+        'public/js/property.js',
+        'public/js/search.js'
     ])
 });

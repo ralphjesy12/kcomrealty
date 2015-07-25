@@ -1,19 +1,19 @@
 var slug = function(str) {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
 
-  // remove accents, swap ñ for n, etc
-  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
-  for (var i=0, l=from.length ; i<l ; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
+    // remove accents, swap ñ for n, etc
+    var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+    var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
 
-  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
 
-  return str;
+    return str;
 };
 
 $(function(){
@@ -79,8 +79,13 @@ $(function(){
                     $('#modal-add-dev').modal('hide');
                     $('a[data-toggle="tab"][href="#developers"]').trigger('shown.bs.tab');
                     setTimeout(function(){
-                        $('#add-dev-submit').text('Add Property');
+                        $('#add-dev-submit').text('Add Developer');
                     },1000);
+                },
+                error : function(jqXHR,textStatus,errorThrown){
+                    bootbox.alert('Saving Developer Failed : '+errorThrown,function(){
+                        $('#add-dev-submit').removeClass('disabled').text('Add Developer').find('i.fa').remove();
+                    });
                 }
             });
         }
@@ -249,8 +254,9 @@ $(function(){
         var embedstring = $(this).val();
         if(embedstring.length){
             var regex = /<iframe.*?src="(.*?)"/;
+            var regex = /\?pb=([a-z0-9\-!.%+]+)\&?/i;
             var src = regex.exec(embedstring)[1];
-            $('#proj-feature-map-preview').attr('src',src);
+            $('#proj-feature-map-preview').attr('src','https://www.google.com/maps/embed?pb='+src);
             $('#proj-feature-map-source').val(src);
         }
     });
@@ -282,6 +288,11 @@ $(function(){
                     });
                 }
 
+            },
+            error : function(jqXHR,textStatus,errorThrown){
+                bootbox.alert('Saving Project Failed : '+errorThrown,function(){
+                    $('#add-proj-submit').removeClass('disabled').text('Add Project').find('i.fa').remove();
+                });
             }
         });
 
@@ -306,6 +317,11 @@ $(function(){
                 }
                 $('#table-proj tbody').append('<tr><td colspan="8" class="text-center"><small><a href="#" data-toggle="modal" data-target="#modal-add-proj" ><i class="fa fa-fw fa-plus"></i>Add New Project</a></small></td></tr>');
                 updatepagination($('#table-proj-pager'),response);
+            },
+            error : function(jqXHR,textStatus,errorThrown){
+                bootbox.alert('Fetching Projects Failed : '+errorThrown,function(){
+                    $('#table-proj tbody').html('<tr><td colspan="8" class="text-center">No Projects yet.</td></tr>');
+                });
             }
         });
     });
@@ -345,7 +361,7 @@ $(function(){
             })
         }
     });
-    
+
     /* UNITS */
     $('#add-unit-images-input').MultiFile({
         max: 10,
@@ -400,6 +416,11 @@ $(function(){
                     });
                 }
 
+            },
+            error : function(jqXHR,textStatus,errorThrown){
+                bootbox.alert('Saving Unit Failed : '+errorThrown,function(){
+                    $('#add-unit-submit').removeClass('disabled').text('Add Unit').find('i.fa').remove();
+                });
             }
         });
 
@@ -445,7 +466,7 @@ $(function(){
             })
         }
     });
-    
+
 });
 
 

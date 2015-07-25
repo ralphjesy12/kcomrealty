@@ -1,5 +1,6 @@
 <?php
-use App\Project;
+    
+use App\Projects;
 if(
     empty($input['proj-feature-name']) ||
     empty($input['proj-feature-location']) ||
@@ -35,10 +36,16 @@ if(
         foreach($images as $k=>$v){
             if(!empty($v)){
                 $outputname = hash('crc32b','$project->name') . '_' . $v->getClientOriginalName();
-                Image::make($v)->fit(1000,1000,function($constraint){
+//                Image::make($v)->fit(1000,1000,function($constraint){
+//                    $constraint->aspectRatio();
+//                    //                    $constraint->upsize();
+//                })->save($moveFolder.$outputname);
+
+
+                Image::make($v)->resize(800, 534, function ($constraint) {
                     $constraint->aspectRatio();
-                    $constraint->upsize();
-                })->save($moveFolder.$outputname);
+                })->resizeCanvas(800, 534, 'center', false, array(255, 255, 255, 0))->save($moveFolder.$outputname);
+
                 $imagepack[] = $outputname;
             }
         };

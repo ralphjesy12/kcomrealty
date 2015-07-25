@@ -332,7 +332,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="add-proj-map">
                         <h4>Insert embed code here from your Map Service Provider</h4>
-                        <textarea class="form-control" rows="3" name="proj-feature-map" id="proj-feature-map" required></textarea>
+                        <textarea class="form-control" rows="3" id="proj-feature-map" required></textarea>
                         <input type="hidden" id="proj-feature-map-source" name="proj-feature-map-source" value="">
                         <h4>Preview</h4>
                         <iframe id="proj-feature-map-preview" src="" width="100%" height="480"></iframe>
