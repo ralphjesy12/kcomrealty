@@ -183,8 +183,8 @@
             <div class="col-sm-6">
                 <ul class="list-inline">
                     <li>
-                        <a href="mailto:info@kcomrealty.com">
-                            <i class="fa fa-fw fa-envelope-o"></i>Email us at info@kcomrealty.com
+                        <a href="mailto:inquire@kcomrealty.com">
+                            <i class="fa fa-fw fa-envelope-o"></i>Email us at inquire@kcomrealty.com
                         </a>
                     </li>
                 </ul>
@@ -273,7 +273,7 @@
             <div class="contact-details text-white">
                 <h2>Contact Details</h2>
                 <!-- Email -->
-                <p><a href="#" class="text-white"><i class="fa fa-envelope"></i> &nbsp; inquire@kcomrealty.com</a></p>
+                <p><a href="mailto:inquire@kcomrealty.com" class="text-white"><i class="fa fa-envelope"></i> &nbsp; inquire@kcomrealty.com</a></p>
                 <!-- Phone -->
                 <p><a href="#" class="text-white"><i class="fa fa-phone"></i> &nbsp; (02) 509-3837 / +639174280828</a></p>
                 <!-- Website -->
