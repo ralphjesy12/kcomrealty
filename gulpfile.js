@@ -15,11 +15,12 @@ elixir(function(mix) {
     mix
 //        .scripts(['jquery.min.js','../plugins/jquery-ui/jquery-ui.min.js','bootstrap.min.js','script.js'], 'public/js/app.js','public/js')
         .less([
-//        'home.less',
-//        'showroom.less',
+        'home.less',
+        'developer.less',
+        'showroom.less',
         'styles.less',
-//        'property.less',
-//        'search.less',
+        'property.less',
+        'search.less',
         'dashboard.less'
     ])
 //        .styles(['../plugins/jquery-ui/jquery-ui.min.css','bootstrap.min.css','font-awesome.min.css'],'public/css/app.css','public/css')

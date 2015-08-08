@@ -367,7 +367,7 @@
                     <li role="presentation"><a href="#add-unit-images" aria-controls="add-unit-images" role="tab" data-toggle="tab">Images</a></li>
                 </ul>
                 <!-- Tab panes -->
-                <form id="add-unit-form" class="tab-content">
+                <form id="add-unit-form" class="tab-content" enctype="multipart/form-data">
                     <div role="tabpanel" class="tab-pane active form-horizontal" id="add-unit-overview">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">

@@ -26,15 +26,16 @@ if(
     
     if(!empty($input['unit-images']) && !empty(Input::file('unit-images'))){
         $imagepack = [];
-        $moveFolder = public_path().'\\images\\units\\';
+        $moveFolder = public_path().DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'units'.DIRECTORY_SEPARATOR;
+		$moveFolder2 = "/home/kcomrealty/public_html".DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'units'.DIRECTORY_SEPARATOR;
         $images = Input::file('unit-images');
         foreach($images as $k=>$v){
             if(!empty($v)){
-                $outputname = hash('crc32b','$unit->description') . '_' . $v->getClientOriginalName();
+                $outputname = hash('crc32b',$unit->description) . '_' . hash('crc32b',$v->getClientOriginalName());
                 Image::make($v)->fit(1000,1000,function($constraint){
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->save($moveFolder.$outputname);
+                })->save($moveFolder.$outputname)->save($moveFolder2.$outputname);
                 $imagepack[] = $outputname;
             }
         };
