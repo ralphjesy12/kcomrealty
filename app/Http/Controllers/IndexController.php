@@ -22,7 +22,14 @@ class IndexController extends Controller {
      */
     public function index()
     {
-        return view('indexnew');
+		// Latest Units
+		
+		
+		
+        $d = [];
+        include 'Models/indexHome.php';
+		
+        return view('indexnew',$d);
     }
     public function developer($id,$name)
     {

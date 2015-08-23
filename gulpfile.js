@@ -16,6 +16,7 @@ elixir(function(mix) {
 //        .scripts(['jquery.min.js','../plugins/jquery-ui/jquery-ui.min.js','bootstrap.min.js','script.js'], 'public/js/app.js','public/js')
         .less([
         'home.less',
+        'homenew.less',
         'developer.less',
         'showroom.less',
         'styles.less',

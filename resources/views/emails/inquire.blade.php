@@ -59,7 +59,7 @@ mso-line-height-rule: exactly !important;
                                             <td class="padded" style="padding: 0;vertical-align: top;padding-left: 32px;padding-right: 32px;word-break: break-word;word-wrap: break-word">
 
                                                 <h1 style="Margin-top: 0;color: #205705;font-weight: 700;font-size: 36px;Margin-bottom: 18px;font-family: sans-serif;line-height: 42px">Property Inquiry received</h1><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">New inquiry received from <?=$name?> &lt;<?=$email?>&gt;</p><blockquote style="Margin-top: 0;Margin-right: 0;Margin-bottom: 0;padding-right: 0;font-style: italic;font-size: 14px;border-left: 2px solid #e9e9e9;Margin-left: 0;padding-left: 16px"><p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 24px"><?=$msg?></p></blockquote>
-
+												<p style="Margin-top: 0;color: #565656;font-family: Georgia,serif;font-size: 16px;line-height: 25px;Margin-bottom: 25px">Contact : <?=$contact?></p>
                                             </td>
                                             </tr>
                                         </tbody></table>

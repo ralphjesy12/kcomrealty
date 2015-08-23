@@ -250,11 +250,15 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <!-- Name -->
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+                        <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
                     </div>
                     <!-- Email -->
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                        <input type="email" name="email" class="form-control" placeholder="Your Email Address" required>
+                    </div>
+                    <!-- Contact -->
+                    <div class="form-group">
+                        <input type="text" name="contact" class="form-control" placeholder="Your Contact Number" required>
                     </div>
                     <!-- Matter -->
                     <div class="form-group">
@@ -301,6 +305,7 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
 <script>
     $(function(){
 
@@ -326,6 +331,10 @@
             }, 1500,'easeInOutExpo');
             event.preventDefault();
         });
+		
+		@if(!empty(Session::get('email')))
+		bootbox.alert("{{ Session::pull('email') }}");
+		@endif
     });
 </script>
 @endsection

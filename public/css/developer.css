@@ -4,6 +4,7 @@ body {
 #main-banner {
   height: 400px;
   margin-top: -18px;
+  overflow: hidden;
 }
 #main-banner img {
   display: block;

@@ -13,7 +13,6 @@
 
 Route::post('/inquire', 'MailController@inquire');
 
-
 Route::get('/', 'IndexController@teaser');
 Route::get('/index', 'IndexController@index');
 Route::get('/developers', 'IndexController@developers');

@@ -6,6 +6,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
 <script src="{{ elixir('js/developer.js') }}"></script>
 <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="{{ asset('plugins/bootstrap-image-gallery/js/bootstrap-image-gallery.min.js') }}"></script>
@@ -23,6 +24,16 @@
 		$('#blueimp-gallery').on('closed', function (event) {
 			$('body').css("overflow","visible");
 		});
+		
+		$('#inquire-modal').on('show.bs.modal',function(event){
+			var btn = event.relatedTarget;
+			var id = $(btn).parents('tr').data('id');
+			$('#inquire-modal').find('input[name="unit"]').val(id);
+		});
+		
+		@if(!empty(Session::get('email')))
+		bootbox.alert("{{ Session::pull('email') }}");
+		@endif
 	});
 
 </script>
@@ -107,10 +118,14 @@ foreach($children as $c){
 											@endif
 										</td>
 										<td><b>{{$c['type']}}</b></td>
-										<td><i class="fa fa-fw fa-2x fa-bed"></i><sup>{{ $c['bedrooms'] }}</sup></td>
+										<td><i class="fa fa-fw fa-2x fa-bed"></i><sup>{{ $c['bedrooms'] }}</sup>
+											@if($c['studio']==1)
+											<sub>Studio</sub>
+											@endif
+										</td>
 										<td><i class="fa fa-fw fa-2x fa-pagelines "></i><sup>{{ $c['bathroom'] }}</sup></td>
 										<td><i class="fa fa-fw fa-2x fa-crop "></i><sup>{{ $c['area'] }}</sup></td>
-										<td><button class="btn btn-primary btn-sm">Inquire Now</button></td>
+										<td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inquire-modal">Inquire Now</button></td>
 									</tr>
 									@endforeach
 									@else
@@ -152,10 +167,12 @@ foreach($children as $c){
 											</a>
 											@endif
 										</td>
-										<td><i class="fa fa-fw fa-2x fa-bed"></i><sup>{{ $c['bedrooms'] }}</sup></td>
+										<td><i class="fa fa-fw fa-2x fa-bed"></i><sup>{{ $c['bedrooms'] }}</sup>@if($c['studio']==1)
+											<sub>Studio</sub>
+											@endif</td>
 										<td><i class="fa fa-fw fa-2x fa-pagelines "></i><sup>{{ $c['bathroom'] }}</sup></td>
 										<td><i class="fa fa-fw fa-2x fa-crop "></i><sup>{{ $c['area'] }}</sup></td>
-										<td><button class="btn btn-primary btn-sm">Inquire Now</button></td>
+										<td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inquire-modal">Inquire Now</button></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -187,8 +204,8 @@ foreach($children as $c){
 								<tr>
 									<td><h1><i class="fa fa-certificate"></i></h1><h4>{{ $info['type'] }}</h4></td>
 									<td><h1><i class="fa fa-building-o"></i></h1><h4>{{ $info['category'] }}</h4></td>
-									<td><h1><i class="fa fa-crop"></i></h1><h4>{{ number_format($info['area'],2) }} sqm</h4></td>
-									<td><h1><i class="fa fa-key"></i></h1><h4>{{ number_format($info['unit'],0) }}</h4></td>
+									<td><h1><i class="fa fa-crop"></i></h1><h4>{{ ($info['area'] > 0 ? number_format($info['area'],2).' sqm' : '-') }}</h4></td>
+									<td><h1><i class="fa fa-key"></i></h1><h4>{{ ($info['unit'] > 0 ? number_format($info['unit'],2) : '-') }}</h4></td>
 								</tr>
 							</tbody>
 						</table>
@@ -289,6 +306,63 @@ foreach($children as $c){
 					</button>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="inquire-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">Inquire Availability</h4>
+			</div>
+
+			<form  method="POST" action="/inquire">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5 text-center">
+							<h4>Contact us through</h4>
+							<div style="height: 150px;width: 150px;text-align: center;padding: 19px;margin:0 auto;">
+								<img src="/images/kcom-logo.png" class="img-responsive">
+							</div>
+							<div class="contact-details text-white">
+								<!-- Email -->
+								<p><a href="mailto:inquire@kcomrealty.com" class="text-white"><i class="fa fa-envelope"></i> &nbsp; inquire@kcomrealty.com</a></p>
+								<!-- Phone -->
+								<p><a href="#" class="text-white"><i class="fa fa-phone"></i> &nbsp; (02) 509-3837 / +639174280828</a></p>
+								<!-- Website -->
+								<p><a href="http://www.kcomrealty.com" class="text-white" target="_blank"><i class="fa fa-globe"></i> &nbsp; www.kcomrealty.com</a></p>
+								<br><br>
+							</div>
+							<h4>Visit us on Facebook</h4>
+							<h1><a href="https://www.facebook.com/pages/K-Com-Realty/1594136257522311" target="_blank" class="text-white"><i class="fa fa-fw fa-facebook"></i><small><b>K-COM REALTY</b></small></a></h1>
+						</div>
+						<div class="col-sm-7">
+							<h4>Leave us a message</h4><br><br>
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden"name="unit">
+							<div class="form-group">
+								<input type="text" class="form-control" id="recipient-name" name="name" placeholder="* Full Name" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="recipient-name" name="email" placeholder="* Email Address" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="recipient-name" name="contact" placeholder="* Mobile Number" required>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" id="message-text" name="message" placeholder="* Message" rows="8" required>Hi! I saw your listing on www.kcomrealty.com and I want to know more about this property. When can you schedule a viewing? Kindly let me know. Thank you!</textarea>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Send message</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

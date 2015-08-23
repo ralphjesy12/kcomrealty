@@ -195,6 +195,10 @@ section#featured h3 {
   padding-bottom: 30px;
   color: #fff;
 }
+section#featured #carousel-featured a {
+  text-decoration: none;
+  color: initial;
+}
 section#featured #carousel-featured .listing-item {
   padding: 0px;
   transition: all 200ms ease-in;

@@ -16,4 +16,13 @@ class Project extends Model {
         "map"
     ];
 
+	
+	public function units(){
+		return $this->hasMany('App\Unit' , 'project');
+	}
+	
+	
+	public function developer(){
+		return $this->belongsTo('App\Developers' , 'developer');
+	}
 }
