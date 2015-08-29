@@ -59,7 +59,10 @@ class IndexController extends Controller {
     }
     public function search()
     {
-        return view('search');
+		$q = Request::all();
+		$d = [];
+        include 'Models/indexSearch.php';
+        return view('search',$d);
     }
     public function showroom()
     {

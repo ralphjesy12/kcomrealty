@@ -18,12 +18,13 @@
 	</div>
 	<div class="row" style="margin:0;">
 		<div id="quick-search" class="panel panel-default">
-			<div class="panel-body">
+			<form class="panel-body" action="/search" method="GET">
 				<div class="col-xs-3">
 					<div class="form-group">
 						<label for="input-proptype">TYPE</label>
-						<select id="input-proptype" class="form-control input-sm">
-							<option>For Sale</option>
+						<select id="input-proptype" class="form-control input-sm" name="type">
+							<option value="">All</option>
+							<option selected>For Sale</option>
 							<option>For Rent</option>
 							<option>Ready for Occupancy</option>
 							<option>Pre Selling</option>
@@ -33,29 +34,29 @@
 				<div class="col-xs-3">
 					<div class="form-group">
 						<label for="input-proptype">CATEGORY</label>
-						<select id="input-proptype" class="form-control input-sm">
-							<option>Single-Family Home</option>
-							<option>Patio Home</option>
-							<option>Townhouse/Villa</option>
-							<option>Apartment</option>
-							<option>Condo-Hotel</option>
+						<select id="input-proptype" class="form-control input-sm" name="category">
+							<option value="">All</option>
+							<option selected>Condominium</option>
+							<option>Townhouse</option>
+							<option>House &amp; Lot</option>
+							<option>Others</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-xs-3">
 					<div class="form-group">
 						<label for="input-bedroomcount">BEDROOMS</label>
-						<input id="input-bedroomcount" type="number" min="1" max="5" class="form-control input-sm" value="1">
+						<input id="input-bedroomcount" type="number" min="1" max="5" class="form-control input-sm" value="1" name="bedrooms">
 					</div>
 				</div>
 				<div class="col-xs-3">
 					<div class="form-group">
 						<label for="input-floorarea">FLOOR AREA <small class="text-muted">(sqm.)</small></label>
-						<input id="input-floorarea" type="number" class="form-control input-sm" min="10" step="10" max="500" value="100">
+						<input id="input-floorarea" type="number" class="form-control input-sm" min="10" step="5" max="100" value="10" name="area">
 					</div>
-					<a href="#" class="pull-right text-green"><b>SEARCH LISTING</b><i class="fa fa-fw fa-play-circle"></i></a>
+					<button class="pull-right btn-link btn text-green" type="submit"><b>SEARCH LISTING</b><i class="fa fa-fw fa-play-circle"></i></button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </section>

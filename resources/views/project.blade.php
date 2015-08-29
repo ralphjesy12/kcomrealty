@@ -54,14 +54,23 @@
 		@endif
 	</ul>
 </section>
-<section id="profile" style="margin-top:-80px;z-index:1000;position:relative;">
-	<div class="container-fluid" style="  background-color: rgba(0,0,0,0.5);  padding: 10px 0;">
+<section id="profile" style="    z-index: 1000;
+    position: relative;">
+	<div class="container-fluid" style="    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    margin-top: -88px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 style="color:#fff;">{{ $info['name'] }}
-						<small style="color:#fff;"> {{ $info['location'] }} </small>
-						<small style="color:#fff;" class="pull-right">{{ count($children) }} Unit/s</small></h2>
+					<h2 style="    color: #fff;
+    font-size: 40px;
+    text-shadow: 1px 1px rgba(0,0,0,0.8);">{{ $info['name'] }}
+						
+						<small style="    color: #fff;
+    font-size: 17px;" class="pull-right">{{ count($children) }} Unit/s</small><small style="    color: #fff;
+    white-space: nowrap;
+    display: block;
+    font-size: 17px;"><i class="fa fa-fw fa-map-marker"></i> {{ $info['location'] }} </small></h2>
 				</div>
 			</div>
 		</div>

@@ -42,13 +42,18 @@ if(
 				//                    //                    $constraint->upsize();
 				//                })->save($moveFolder.$outputname);
 
-				Image::make($v)->resize(800, 534, function ($constraint) {
+				$imgTop = Image::make($v)->resize(800, 534, function ($constraint) {
 					$constraint->aspectRatio();
 					$constraint->upsize();
-				})
-					->resizeCanvas(800, 534, 'center', false, array(255, 255, 255, 0))
-					->save($moveFolder.$outputname)
-					->save($moveFolder2.$outputname);
+				});
+
+				$imgBack = Image::make($v)->resize(800, 534)->blur(15)->greyscale()->insert($imgTop,'center')
+					//					->resizeCanvas(800, 534, 'center', false, array(255, 255, 255, 0))
+					->save($moveFolder.$outputname);
+				if(file_exists($moveFolder2)){
+					$imgBack->save($moveFolder2.$outputname);
+				}
+
 				$imagepack[] = $outputname;
 			}
 		};

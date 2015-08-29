@@ -1,7 +1,7 @@
 $(function(){
     $('.range-beds').slider({
-        min: 0,
-        max: 10,
+        min: 1,
+        max: 5,
         range: true,
         values: [1, 4]
     });
@@ -15,9 +15,10 @@ $(function(){
     }).slider("float");
 
     $('.range-floor').slider({
-        min: 0,
+        min: 10,
         max: 100,
         range: true,
+        step : 5,
         values: [1, 50]
     });
 
